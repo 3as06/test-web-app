@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link href="css/bootstrap.min.css" rel="stylessheet">
+    <title>Credit Offer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/shards.min.css">
+</head>
+<body>
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+    <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#bootstrap"/></svg>
+        <div>
+            <a class="btn btn-primary btn-sm " href="\credit" role="button">Кредитные пакеты</a>
+            <p>Добавить, редактировать, удалить кредитные пакеты банка</p>
+        </div>
+    </div>
+    <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#cpu-fill"/></svg>
+        <div>
+            <a class="btn btn-primary btn-sm " href="\customer" role="button">Клиенты</a>
+            <p>Добавить, редактировать, удалить клиентов банка</p>
+        </div>
+    </div>
+    <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#calendar3"/></svg>
+        <div>
+            <a class="btn btn-primary btn-sm " href="\customer" role="button">Кредитные предложения</a>
+            <p>Создать кредитное предложение, распечатать график платежей, узнать полную сумму кредита</p>
+        </div>
+    </div>
+</div>
+</div>
+
+<thead>
+</thead>
+<div th:switch="${customer}" class="container my-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 th:case="null">Кредитные предложения</h2>
+            <div th:case="*">
+                <h2 class="my-5">Клиент</h2>
+                <table class="table table-striped table-responsive-md">
+                    <tbody>
+                        <h3 th:text = "${customer.fullName}"></h3>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:switch="${creditOffers}" class="container my-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 th:case="null"></h2>
+            <div th:case="*">
+                <h2 class="my-5">Действующие КП</h2>
+                <table class="table table-striped table-responsive-md">
+                    <thead>
+                    <tr>
+                        <th>Сумма кредита</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="creditOffer : ${creditOffers}">
+                        <td th:text="${creditOffer.loanSum}"></td>
+                        <td><a th:href="@{/payment-graphic/{id}(id=${creditOffer.id})}" class="btn btn-primary">Просмотреть график платежей<i class="fas fa-customer-times ml-2"></i></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:switch="${credits}" class="container my-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 th:case="null"></h2>
+            <div th:case="*">
+                <h2 class="my-5">Доступные кредитные пакеты</h2>
+                <table class="table table-striped table-responsive-md">
+                    <thead>
+                        <tr>
+                            <th>Лимит</th>
+                            <th>Процентная ставка</th>
+                            <th width="500">Сумма кредита</th>
+                            <th>Срок кредита, месяцев</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="credit : ${credits}">
+                            <td th:text="${credit.creditLimit}"></td>
+                            <td th:text="${credit.interestRate}"></td>
+                            <form action="/credit-offer" th:object="${creditOffer}" method="post">
+                            <input type="hidden"  name = "customerId" field="*{customerId}" class="form-control" id="customerId" th:value = "${customer.id}">
+                            <input type="hidden"  name = "id" field="*{id}" class="form-control" id="id" th:value = "${credit.id}">
+                            <td><input type="number" width="500" size="50" min = "1" step = "any" th:max="${credit.creditLimit}" name = "loanSum" field="*{loanSum}" class="form-control" id="loanSum" placeholder="" required></td>
+                            <td><input type="number" min = "1" step = "1" name = "loanTerm" field="*{loanTerm}" class="form-control" id="loanTerm" placeholder="" required></td>
+                            <td><input type="submit" class="btn btn-primary" value="Сделать КП"></td>
+                            </form>
+                        </tr>
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+    

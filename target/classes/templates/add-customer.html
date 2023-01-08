@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Add Customer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/shards.min.css">
+</head>
+<body>
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+    <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#bootstrap"/></svg>
+        <div>
+            <a class="btn btn-primary btn-sm " href="\credit" role="button">Кредитные пакеты</a>
+            <p>Добавить, редактировать, удалить кредитные пакеты банка</p>
+        </div>
+    </div>
+    <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#cpu-fill"/></svg>
+        <div>
+            <a class="btn btn-primary btn-sm " href="\customer" role="button">Клиенты</a>
+            <p>Добавить, редактировать, удалить клиентов банка</p>
+        </div>
+    </div>
+    <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#calendar3"/></svg>
+        <div>
+            <a class="btn btn-primary btn-sm " href="\customer" role="button">Кредитные предложения</a>
+            <p>Создать кредитное предложение, распечатать график платежей, узнать полную сумму кредита</p>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="container my-5">
+    <h2 class="mb-5">Добавить клиента</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <form action="/add-customer" th:object="${customer}" method="post">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="fullName" class="col-form-label">ФИО</label>
+                        <input type="text" name = "fullName" field="*{fullName}" class="form-control" id="fullName" placeholder="ФИО" REQUIRED>
+                        <span if="${#fields.hasErrors('fullName')}" errors="*{fullName}" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="phoneNumber" class="col-form-label">Телефон</label>
+                        <input type="tel" required pattern="[789][0-9]{9}" name = "phoneNumber" field="*{phoneNumber}" class="form-control" id="phoneNumber" placeholder="9876543210">
+                        <span if="${#fields.hasErrors('phoneNumber')}" errors="*{phoneNumber}" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="email" class="col-form-label">e-mail</label>
+                        <input type="email" name = "email" field="*{email}" class="form-control" id="email" placeholder="example@email.ru" REQUIRED>
+                        <span if="${#fields.hasErrors('email')}" errors="*{email}" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="passportNumber" class="col-form-label">Паспорт</label>
+                        <input type="number" min="1000000000" max="9999999999" name = "passportNumber" field="*{passportNumber}" class="form-control" id="passportNumber" placeholder="серия, номер слитно" REQUIRED>
+                        <span if="${#fields.hasErrors('passportNumber')}" errors="*{passportNumber}" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-5">
+                        <input type="submit" class="btn btn-primary" value="Добавить клиента">
+                    </div>
+                </div>
+            </form>
+           <p class="py-3"><a class="btn btn-primary btn-sm" href="\customer" role="button">Отмена</a></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

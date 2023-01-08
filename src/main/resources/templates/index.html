@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link href="css/bootstrap.min.css" rel="stylessheet">
+    <title>CreditDep</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/shards.min.css">
+</head>
+<style>
+    .card {display:inline-block;}
+</style>
+<body>
+<div class="container-fluid">
+
+<div class="container px-4 py-5" id="icon-grid">
+    <h2 class="pb-2 border-bottom">Кредитный департамент</h2>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#bootstrap"/></svg>
+        <div>
+          <a class="btn btn-primary btn-sm " href="\credit" role="button">Кредитные пакеты</a>
+          <p>Добавить, редактировать, удалить кредитные пакеты банка</p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#cpu-fill"/></svg>
+        <div>
+          <a class="btn btn-primary btn-sm " href="\customer" role="button">Клиенты</a>
+          <p>Добавить, редактировать, удалить клиентов банка</p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#calendar3"/></svg>
+        <div>
+          <a class="btn btn-primary btn-sm " href="\customer" role="button">Кредитные предложения</a>
+          <p>Создать кредитное предложение, распечатать график платежей, узнать полную сумму кредита</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -24,7 +24,7 @@ public class CreditOfferImpl implements CreditOfferService {
     CreditRepository creditRepository;
 
     @Override
-    public UUID setNewCreditOffer(Credit credit, Customer customer, int loanTerm, float loanSum) {
+    public UUID setNewCreditOffer(Credit credit, Customer customer, int loanTerm, double loanSum) {
         CreditOffer creditOffer = new CreditOffer();
         creditOffer.setCredit(credit);
         creditOffer.setCustomer(customer);

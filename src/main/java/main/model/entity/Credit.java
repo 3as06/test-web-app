@@ -23,8 +23,8 @@ public class Credit {
     @Column(name = "credit_limit", nullable = false, columnDefinition = "DOUBLE")
     private double creditLimit;
 
-    @Column(name = "interest_rate", nullable = false, columnDefinition = "FLOAT")
-    private float interestRate;
+    @Column(name = "interest_rate", nullable = false, columnDefinition = "DOUBLE")
+    private double interestRate;
 
     @OneToMany(mappedBy = "credit")
     private Set<CreditOffer> creditOffers;

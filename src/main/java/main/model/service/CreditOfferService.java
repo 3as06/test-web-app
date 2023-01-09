@@ -7,7 +7,7 @@ import main.model.entity.Customer;
 import java.util.UUID;
 
 public interface CreditOfferService {
-    UUID setNewCreditOffer(Credit credit, Customer customer, int loanTerm, float loanSum);
+    UUID setNewCreditOffer(Credit credit, Customer customer, int loanTerm, double loanSum);
 
     CreditOffer findCreditOfferById(UUID creditOfferId);
 }

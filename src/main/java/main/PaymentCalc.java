@@ -13,13 +13,13 @@ public class PaymentCalc {
     private ArrayList<Double> creditBodyPaymentList = new ArrayList<>();
 
     //расчет ежемесячного аннуитетного платежа по кредиту
-    public void monthlyPayment(float interestRate, double loanSum, int loanTerm) {
+    public void monthlyPayment(double interestRate, double loanSum, int loanTerm) {
         double interestRatePerMonth = (interestRate/100)/12;
         payment = Math.round((loanSum * (interestRatePerMonth)/(1 - Math.pow((1 + interestRatePerMonth), -loanTerm))) * scale) / scale;
         creditFullPrice = payment * loanTerm;
     }
     //расчет гашения тела и процентов по кредиту помесячно
-    public void creditBodyAndPercentsPaymentListCulc(float interestRate, double loanSum, double monthlyPayment, int loanTerm) {
+    public void creditBodyAndPercentsPaymentListCulc(double interestRate, double loanSum, double monthlyPayment, int loanTerm) {
         double interestRatePerMonth = (interestRate/100)/12;
         double remainingSum = loanSum;
         for(int i = 0; i < loanTerm; i++) {

@@ -20,7 +20,7 @@ public class PaymentGraphicImpl implements PaymentGraphicService {
     CreditOfferRepository creditOfferRepository;
 
     @Override
-    public void setPaymentGraphic(UUID creditOfferId, float interestRate, double loanSum, int loanTerm) {
+    public void setPaymentGraphic(UUID creditOfferId, double interestRate, double loanSum, int loanTerm) {
         PaymentCalc paymentCalc = new PaymentCalc();
         CreditOffer creditOffer = creditOfferRepository.getOne(creditOfferId);
         paymentCalc.monthlyPayment(interestRate, loanSum, loanTerm);

@@ -40,13 +40,13 @@ public class CreditOfferController {
     }
 
     @PostMapping("/credit-offer")
-    public String editCreditOffer(String customerId, String id, int loanTerm, float loanSum, Model model) {
+    public String editCreditOffer(String customerId, String id, int loanTerm, double loanSum, Model model) {
         UUID creditUuid = UUID.fromString(id);
         UUID customerUuid = UUID.fromString(customerId);
         Credit credit = creditImpl.findCreditById(creditUuid);
         Customer customer1 = customerImpl.findCustomer(customerUuid);
         UUID creditOfferId = creditOfferImpl.setNewCreditOffer(credit, customer1, loanTerm, loanSum);
-        float interestRate = credit.getInterestRate();
+        double interestRate = credit.getInterestRate();
         paymentGraphicImpl.setPaymentGraphic(creditOfferId, interestRate, loanSum, loanTerm);
         return "redirect:/credit-offer/" + customerId;
     }
